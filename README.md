@@ -9,7 +9,7 @@
 ### Simulation Slow Subscriber
 ![slowsubscriber](slowsubscriber.png)
 Explanation: <br>
-Pada graf queued messages, kita bisa melihat spike tinggi sampai 20 (saya menjalankan cargo run 4x berturut turut) karena publisher mengirim pesan pada rate yang lebih cepat dibandingkan rate consume dari subscriber. Karena lebih lambat, jadinya yang belum diproses tersebut disimpan terlebih dahulu pada queued messages. 
+Pada grafik Queued Messages, terlihat adanya spike yang cukup signifikan hingga mencapai angka 20. Hal ini terjadi karena saya menjalankan cargo run pada publisher sebanyak 4 kali secara berurutan dalam waktu singkat. Ketika publisher mengirimkan pesan dengan kecepatan yang lebih tinggi dibanding kemampuan subscriber dalam mengonsumsi pesan, maka akan terjadi penumpukan pesan di queue. Pesan-pesan yang belum sempat diproses oleh subscriber tidak langsung hilang, melainkan disimpan sementara oleh RabbitMQ dalam message queue untuk menunggu giliran diproses. Hal tersebutlah yang menyebabkan terjadinya peningkatan tajam pada jumlah pesan yang mengantre. Lonjakan ini akan menurun secara bertahap seiring dengan subscriber mulai memproses satu per satu pesan dari queue, sampai akhirnya queue kembali kosong jika semua pesan telah dikonsumsi.
 
 <br><br><br><br>
 
