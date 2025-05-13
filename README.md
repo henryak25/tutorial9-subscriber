@@ -1,0 +1,5 @@
+1. What is amqp?
+    - AMQP (Advanced Message Queuing Protocol) adalah open protocol yang digunakan untuk komunikasi message antar aplikasi atau sistem. Dalam konteks code pada main.rs, amqp://guest:guest@localhost:5672 adalah URI untuk koneksi ke server RabbitMQ menggunakan AMQP. RabbitMQ adalah message broker yang mendukung AMQP, memungkinkan aplikasi untuk mengirim dan menerima message secara asynchronous.
+
+2. What does it mean? guest:guest@localhost:5672 , what is the first guest, and what is the second guest, and what is localhost:5672 is for?
+    - amqp://guest:guest@localhost:5672 adalah URI untuk koneksi ke server RabbitMQ menggunakan AMQP. guest:guest adalah pasangan username dan password yang akan digunakan untuk authentication ke RabbitMQ, dimana guest pertama adalah username dan guest kedua adalah password. Pada RabbitMQ, username dan password yang default juga memang guest. localhost berarti host tempat dimana RabbitMQ berjalan, dalam hal ini berarti mengacu pada komputer dimana aplikasinya berjalan. 5672 adalah port yang digunakan oleh RabbitMQ untuk komunikasi menggunakan protokol AMQP. port 5672 adalah port default yang digunakan oleh RabbitMQ.
