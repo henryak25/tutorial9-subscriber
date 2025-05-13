@@ -8,5 +8,18 @@
 
 ### Simulation Slow Subscriber
 ![slowsubscriber](slowsubscriber.png)
-Explanation:
+Explanation: <br>
 Pada graf queued messages, kita bisa melihat spike tinggi sampai 20 (saya menjalankan cargo run 4x berturut turut) karena publisher mengirim pesan pada rate yang lebih cepat dibandingkan rate consume dari subscriber. Karena lebih lambat, jadinya yang belum diproses tersebut disimpan terlebih dahulu pada queued messages. 
+
+<br><br><br><br>
+
+### Reflection and Running at least three subscribers
+![graphmulti](graphmulti.png)
+![terminal1](terminal1.png)
+![terminal2](terminal2.png)
+![terminal3](terminal3.png)
+<br>
+Explanation: <br>
+Saya menjalankan cargo run pada publisher sebanyak 7 kali. Hasilnya, ketika diamati di terminal, pesan-pesan yang dikirim berhasil terbagi cukup merata ke tiga subscriber, masing-masing menangani sekitar 10 hingga 11 pesan. Hal ini menunjukkan bahwa dengan menambahkan lebih banyak subscriber, proses konsumsi pesan menjadi jauh lebih efisien dan cepat.<br>
+Pada graf queued messages, kita juga dapat melihat bahwa spike jumlah pesan yang sebelumnya tinggi kini menurun dengan signifikan. Penurunan ini terjadi karena proses pengambilan pesan dari antrean kini dilakukan secara paralel oleh tiga subscriber, bukan hanya satu, sehingga antrean dapat dikosongkan lebih cepat.<br>
+Ketika publisher mengirim banyak pesan ke dalam antrean, setiap subscriber menerima bagian pesan yang unik dan tidak saling tumpang tindih. Setiap subscriber bertindak seperti instance aplikasi tersendiri, mengambil pesan secara independen. Setelah sebuah pesan diambil oleh salah satu subscriber, pesan tersebut akan langsung dihapus dari antrean dan tidak bisa diakses oleh subscriber lainnya. 
