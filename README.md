@@ -3,3 +3,10 @@
 
 2. What does it mean? guest:guest@localhost:5672 , what is the first guest, and what is the second guest, and what is localhost:5672 is for?
     - amqp://guest:guest@localhost:5672 adalah URI untuk koneksi ke server RabbitMQ menggunakan AMQP. guest:guest adalah pasangan username dan password yang akan digunakan untuk authentication ke RabbitMQ, dimana guest pertama adalah username dan guest kedua adalah password. Pada RabbitMQ, username dan password yang default juga memang guest. localhost berarti host tempat dimana RabbitMQ berjalan, dalam hal ini berarti mengacu pada komputer dimana aplikasinya berjalan. 5672 adalah port yang digunakan oleh RabbitMQ untuk komunikasi menggunakan protokol AMQP. port 5672 adalah port default yang digunakan oleh RabbitMQ.
+
+<br>
+
+### Simulation Slow Subscriber
+![slowsubscriber](slowsubscriber.png)
+Explanation:
+Pada graf queued messages, kita bisa melihat spike tinggi sampai 20 (saya menjalankan cargo run 4x berturut turut) karena publisher mengirim pesan pada rate yang lebih cepat dibandingkan rate consume dari subscriber. Karena lebih lambat, jadinya yang belum diproses tersebut disimpan terlebih dahulu pada queued messages. 
